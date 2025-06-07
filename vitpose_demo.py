@@ -16,14 +16,7 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 #handling input
 image_path = input("Image path here: ")
 
-if image_path == "":
-    image_path = "gitar.jpg"
-
-else:
-    while isfile("/images/"+ image_path):
-        image_path = input("Incorrect image path!\nImage path here: ")
-
-image = Image.open("images/" + image_path).convert("RGB")
+image = Image.open(image_path).convert("RGB")
 
 # ------------------------------------------------------------------------
 # Stage 1. Detect humans on the image
