@@ -11,7 +11,7 @@ import cv2
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-image_path = "images/IMG_20250607_144302.jpg"
+image_path = "images/IMG_20250607_144554.jpg"
 image = Image.open(image_path).convert("RGB")
 
 # ------------------------------------------------------------------------
@@ -64,11 +64,11 @@ key_points = sv.KeyPoints(
 
 edge_annotator = sv.EdgeAnnotator(
     color=sv.Color.GREEN,
-    thickness=1
+    thickness=12
 )
 vertex_annotator = sv.VertexAnnotator(
     color=sv.Color.RED,
-    radius=2
+    radius=16
 )
 annotated_frame = edge_annotator.annotate(
     scene=image.copy(),
@@ -83,4 +83,3 @@ annotated_np = np.array(annotated_frame)
 annotated_bgr = cv2.cvtColor(annotated_np, cv2.COLOR_RGB2BGR)
 
 cv2.imwrite('annotated_output.jpg', annotated_bgr)
-print(image_processor.image_size)
