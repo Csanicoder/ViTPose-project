@@ -26,7 +26,11 @@ conda_env/
 
 #images directory
 images/
+video/
 
 #images
 *.jpg
 *.png
+
+#videos
+*.mp4
