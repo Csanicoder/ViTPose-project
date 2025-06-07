@@ -1,14 +1,18 @@
 import torch
 import requests
+import numpy as np
 
 from PIL import Image
 
 from transformers import AutoProcessor, RTDetrForObjectDetection, VitPoseForPoseEstimation
 
+import supervision as sv
+import cv2
+
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-url = "http://images.cocodataset.org/val2017/000000000139.jpg"
-image = Image.open(requests.get(url, stream=True).raw)
+image_path = "images/IMG_20250607_144302.jpg"
+image = Image.open(image_path).convert("RGB")
 
 # ------------------------------------------------------------------------
 # Stage 1. Detect humans on the image
@@ -50,3 +54,33 @@ with torch.no_grad():
 
 pose_results = image_processor.post_process_pose_estimation(outputs, boxes=[person_boxes])
 image_pose_result = pose_results[0]  # results for first image
+
+xy = torch.stack([pose_result['keypoints'] for pose_result in image_pose_result]).cpu().numpy()
+scores = torch.stack([pose_result['scores'] for pose_result in image_pose_result]).cpu().numpy()
+
+key_points = sv.KeyPoints(
+    xy=xy, confidence=scores
+)
+
+edge_annotator = sv.EdgeAnnotator(
+    color=sv.Color.GREEN,
+    thickness=1
+)
+vertex_annotator = sv.VertexAnnotator(
+    color=sv.Color.RED,
+    radius=2
+)
+annotated_frame = edge_annotator.annotate(
+    scene=image.copy(),
+    key_points=key_points
+)
+annotated_frame = vertex_annotator.annotate(
+    scene=annotated_frame,
+    key_points=key_points
+)
+
+annotated_np = np.array(annotated_frame)
+annotated_bgr = cv2.cvtColor(annotated_np, cv2.COLOR_RGB2BGR)
+
+cv2.imwrite('annotated_output.jpg', annotated_bgr)
+print(image_processor.image_size)
