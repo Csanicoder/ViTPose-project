@@ -24,6 +24,9 @@ conda_env/
 # Mac system files
 .DS_Store
 
+#images directory
+images/
+
 #images
-.jpg
-.png
+*.jpg
+*.png
