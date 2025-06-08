@@ -27,6 +27,7 @@ conda_env/
 #images directory
 images/
 video/
+out/
 
 #images
 *.jpg
