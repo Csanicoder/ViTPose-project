@@ -30,7 +30,7 @@ annotator = pose_annotator.PoseAnnotator()
 
 frame_index = 1
 
-# main loop, reading, proccessing, annotating and writing each frame, one by one.
+# main loop, reading, processing, annotating and writing each frame, one by one.
 while captured_video.isOpened():
 
     print(f"Reading frame {frame_index}")
