@@ -1,10 +1,24 @@
 import torch
 from transformers import AutoProcessor, RTDetrForObjectDetection, VitPoseForPoseEstimation
-import os
 
 class PoseProcessor:
     """
-    This class is used to process the people visible on an image, and identify their keypoints (shoulders, hips, knees, etc.)
+    This class is used to process the people visible on an image, and identify their keypoints *(shoulders, hips, knees, etc.)*
+    Members:
+        **device:** *cuda* if gpu available, else *cpu*
+
+        **person_image_processor:** used for converting between image format and format used by the model
+
+        **person_model:** identifies objects on the image (filtered to humans inside **process_frame** method)
+
+        **image_processor:** same as **person_image_processor** but for the vitpose model
+
+        **model:** vitpose model, detects keypoints for all humans on the image
+
+    Methods:
+        **__init__:** initializes members
+
+        **process_frame:** runs keypoint detection for a single image
     """
 
     def __init__(self, local_person_path = "/home/csand/.cache/huggingface/hub/models--PekingU--rtdetr_r50vd_coco_o365/snapshots/457857cec8ac28ddede40ecee9eed2beca321af8"
@@ -26,6 +40,20 @@ class PoseProcessor:
 
     # main method, used for processing now multiple images and outputting the pose result
     def process_frame(self, image):
+        """
+        Runs keypoint detection for a single image.
+
+        The method consists of three steps:
+        **1.** Detect objects on the image
+        **2.** Filter objects to humans
+        **3.** Run keypoint detection on these objects
+        :param image: the image to be processed
+        :return: a list of dictionaries, each representing a human.
+            Each dict conatins two pairs:
+            1. keypoints
+            2. scores
+            *(see method for further details)*
+        """
 
         # converting images into the format that the model needs
         inputs = self.person_image_processor(images=image, return_tensors="pt").to(self.device)
