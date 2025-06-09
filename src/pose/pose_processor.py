@@ -66,7 +66,7 @@ class PoseProcessor:
         results = self.person_image_processor.post_process_object_detection(
             outputs,
             target_sizes=torch.tensor([(image.height, image.width)]), # converting normalized coordinates back to the dimensions of the image
-            threshold=0.3 # ignoring boxes under a score of 0.3
+            threshold=0.5 # ignoring boxes under a score of 0.5
         )
         result = results[0]
 

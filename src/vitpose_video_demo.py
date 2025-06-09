@@ -10,7 +10,7 @@ from src.vitpose_image_demo import annotated_bgr
 logging.basicConfig(level=logging.DEBUG)
 
 # Input video
-video_path = "../video/campus.mp4"
+video_path = "../video/slab.mp4"
 captured_video = cv2.VideoCapture(video_path)
 
 # Output video, getting parameters of original video
