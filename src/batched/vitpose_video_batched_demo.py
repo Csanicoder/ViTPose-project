@@ -1,15 +1,15 @@
 import cv2
 from PIL import Image
-from src.pose import pose_processor_batched, pose_annotator
-import numpy as np
+from src.pose import pose_annotator
+from src.pose.batched import pose_processor_batched
 
 #--------------------------------------------------------------------
 # Input video
-video_path = "../video/slab.mp4"
+video_path = "../../video/slab.mp4"
 cap = cv2.VideoCapture(video_path)
 
 # Output video, getting parameters of original video
-output_path = "../out/video/annotated_video_output.mp4"
+output_path = "../../out/video/annotated_video_output.mp4"
 fps = cap.get(cv2.CAP_PROP_FPS)
 width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))

@@ -1,6 +1,7 @@
 import cv2
 from PIL import Image
-from src.pose import pose_processor_batched, pose_annotator
+from src.pose import pose_annotator
+from src.pose.batched import pose_processor_batched
 
 #handling input
 image_paths = ["../images/sarkany.jpg", "../images/boxolo.jpg", "../images/karate.jpg"]
