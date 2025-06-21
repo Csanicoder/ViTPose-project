@@ -1,5 +1,5 @@
 # :climbing: Climbing Movement Analysis
-This proof of concept project for implementing an AI assisted tool that can help climbers analyse their movement.
+This is a proof of concept project for implementing an AI assisted tool that can help climbers analyse their movement.
 
 ## Goals
 My main idea is to use the keypoints of the body detected by the pose recognition agent, along with either:
