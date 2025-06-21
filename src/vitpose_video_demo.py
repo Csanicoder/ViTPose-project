@@ -87,4 +87,4 @@ while captured_video.isOpened():
 # Clean up
 captured_video.release()
 out.release()
-print(f"Annotated video saved to {output_path}")
+logging.info(f"Annotated video saved to {output_path}")
