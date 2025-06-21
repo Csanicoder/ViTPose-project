@@ -21,8 +21,10 @@ class PoseProcessor:
         **process_frame:** runs keypoint detection for a single image
     """
 
-    def __init__(self, local_person_path = "/home/csand/.cache/huggingface/hub/models--PekingU--rtdetr_r50vd_coco_o365/snapshots/457857cec8ac28ddede40ecee9eed2beca321af8"
-                 , local_path = "/home/csand/.cache/huggingface/hub/models--usyd-community--vitpose-base-simple/snapshots/a93ac0c67e0b7e2c55287d21d4c460c8f3c54d45"):
+# rtdetr local: /home/csand/.cache/huggingface/hub/models--PekingU--rtdetr_r50vd_coco_o365/snapshots/457857cec8ac28ddede40ecee9eed2beca321af8
+# vitpose local: /home/csand/.cache/huggingface/hub/models--usyd-community--vitpose-base-simple/snapshots/a93ac0c67e0b7e2c55287d21d4c460c8f3c54d45
+    def __init__(self, local_person_path = "PekingU/rtdetr_r50vd_coco_o365"
+                 , local_path = "usyd-community/vitpose-base-simple"):
         """
         initialize class attributes
         :param local_person_path: path to local huggingface object detection models - default is RT-DETR
