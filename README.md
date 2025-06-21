@@ -42,3 +42,5 @@ You can download climbing videos from [this](https://drive.google.com/drive/fold
 The ouput is an image / video file, identical to the input, except that the keypoints are drawn on top of them.\
 In the image demo, the path is hard coded into the ```cv2.imwrite()``` function to ```../out/image/annotated_output.jpg```.\
 In the video demo, the path is defined in the ```output_path``` variable as ```../out/video/annotated_video_output.mp4```.
+
+The ouputs of the [above linked](https://drive.google.com/drive/folders/1g5j74eu0UsE0nyM0RjFE1hUrgHc-h7IP?usp=sharing) videos can be found in the same drive :D
